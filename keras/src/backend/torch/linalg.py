@@ -84,3 +84,7 @@ def lstsq(a, b, rcond=None):
 
 def jvp(fun, primals, tangents, has_aux=False):
     return torch.func.jvp(fun, primals, tangents, has_aux=has_aux)
+
+
+def cdist(x1, x2, p=2.0):
+    return torch.cdist(x1, x2, p=2.0)

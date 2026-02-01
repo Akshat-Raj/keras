@@ -825,3 +825,11 @@ def jvp(fun, primals, tangents, has_aux=False):
     if any_symbolic_tensors((primals, tangents)):
         return JVP(has_aux=has_aux).symbolic_call(fun, primals, tangents)
     return backend.linalg.jvp(fun, primals, tangents, has_aux=has_aux)
+
+
+def cdist(x1, x2, p=2.0):
+    if hasattr(backend.get_backend_linalg(),"cdist"):
+        return backend.linalg.cdist(x1, y1, p=2.0)
+
+    diff = x1[:, :, None, :] - x2[:, None, :, :]
+    return ops.norm(diff, ord=p, axiz=-1)
